@@ -32,10 +32,13 @@ Step 2. Add the dependency
 	}
 
 ### 初始化
-org.thoughtcrime.securesms.util.VideoConvertUtil.init(context, scheduler);
+
+    org.thoughtcrime.securesms.util.VideoConvertUtil.init(context, scheduler);
 
 ### 开始转换
-Integer convertId = org.thoughtcrime.securesms.util.VideoConvertUtil.startVideoConvert(srcPath, dstPath, upperSizeLimit, true/false, listener)
+
+    Integer convertId = org.thoughtcrime.securesms.util.VideoConvertUtil.startVideoConvert(srcPath, dstPath, upperSizeLimit, true/false, listener)
 
 ### 取消转换
-org.thoughtcrime.securesms.util.VideoConvertUtil.stopVideoConvert(int convertId);
+
+    org.thoughtcrime.securesms.util.VideoConvertUtil.stopVideoConvert(int convertId);
