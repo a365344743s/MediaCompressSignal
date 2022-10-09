@@ -14,6 +14,23 @@ Bump version to 5.43.3
 
 # USAGE
 ## Signal(最低支持AndroidApi26)
+
+Step 1. Add the JitPack repository to your build file
+
+Add it in your root build.gradle at the end of repositories:
+
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+Step 2. Add the dependency
+
+	dependencies {
+        implementation 'com.github.a365344743s:MediaCompressSignal:1.0.0'
+	}
+
 ### 初始化
 org.thoughtcrime.securesms.util.VideoConvertUtil.init(context, scheduler);
 
