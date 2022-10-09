@@ -1,4 +1,4 @@
-package chengdu.ws.mediacompress;
+package chengdu.ws.mediacompress.signal;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package chengdu.ws.mediacompress;
+package chengdu.ws.mediacompress.signal;
 
 import android.annotation.SuppressLint;
 import android.os.Build;
@@ -13,12 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.blankj.utilcode.constant.PermissionConstants;
 import com.blankj.utilcode.util.PermissionUtils;
 
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.VideoEditedInfo;
-
 public class MainActivity extends AppCompatActivity {
     private TextView infoTV;
-    private Button signalMemoryBTN, signalStreamBTN, telegramBTN;
+    private Button signalMemoryBTN, signalStreamBTN;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -28,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
         infoTV = findViewById(R.id.tv_info);
         signalMemoryBTN = findViewById(R.id.btn_signal_memory);
         signalStreamBTN = findViewById(R.id.btn_signal_stream);
-        telegramBTN = findViewById(R.id.btn_telegram);
 
         PermissionUtils.permissionGroup(PermissionConstants.STORAGE)
                 .request();
@@ -36,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         String videoPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/source.mp4";
         String attachPathSignalMemory = this.getFilesDir() + "/convert/signalMemory.mp4";
         String attachPathSignalStream = this.getFilesDir() + "/convert/signalStream.mp4";
-        String attachPathTelegram = this.getFilesDir() + "/convert/telegram.mp4";
         long upperSizeLimit = 100 * 1024 * 1024;
         signalMemoryBTN.setOnClickListener(view -> {
             if (!org.thoughtcrime.securesms.util.MemoryFileDescriptor.supported()) {
@@ -90,33 +85,6 @@ public class MainActivity extends AppCompatActivity {
             });
             if (idSignalStream == null) {
                 infoTV.setText("Signal stream start failed:");
-            }
-        });
-        telegramBTN.setOnClickListener(view -> {
-            Integer telegramId = org.telegram.messenger.VideoConvertUtil.startVideoConvert(videoPath, attachPathTelegram, new MediaController.ConvertorListener() {
-                @Override
-                public void onConvertStart(VideoEditedInfo info, float progress, long lastFrameTimestamp) {
-
-                }
-
-                @Override
-                public void onConvertProgress(VideoEditedInfo info, long availableSize, float progress, long lastFrameTimestamp) {
-                    infoTV.setText("Telegram progress: " + progress);
-                }
-
-                @Override
-                public void onConvertSuccess(VideoEditedInfo info, long fileLength, long lastFrameTimestamp) {
-                    infoTV.setText("Telegram success: " + info.toString());
-                }
-
-                @Override
-                public void onConvertFailed(VideoEditedInfo info, float progress, long lastFrameTimestamp) {
-                    infoTV.setText("Telegram failed: " + info.toString());
-
-                }
-            });
-            if (telegramId == null) {
-                infoTV.setText("Telegram start failed:");
             }
         });
     }
