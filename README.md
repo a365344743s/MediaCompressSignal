@@ -54,11 +54,17 @@ Step 2. Add the dependency
 可以控制 输出视频码率、分辨率 和 输出音频码率，但是音频码率通常在视频码率的 1/3至1/10，所以音频码率修改对最终文件大小影响不大。
 
 ## 计算方法
-1.根据 upperSizeLimit 和 源视频时长，计算出目标视频的码率-VideoBitRateCalculator.getTargetQuality(long duration, int inputTotalBitRate)。
-2.根据目标视频码率，计算出目标视频分辨率-VideoBitRateCalculator.Quality.getOutputResolution()。
+1.根据 upperSizeLimit 和 源视频时长，计算出目标视频的码率
+
+    VideoBitRateCalculator.getTargetQuality(long duration, int inputTotalBitRate)。
+
+2.根据目标视频码率，计算出目标视频分辨率
+
+    VideoBitRateCalculator.Quality.getOutputResolution()。
 
 ## 视频码率控制
 视频码率主要由输出尺寸和视频时长控制，但是提供了一个码率范围 VideoBitRateCalculator.MINIMUM_TARGET_VIDEO_BITRATE(默认500_000) 和 VideoBitRateCalculator.MAXIMUM_TARGET_VIDEO_BITRATE(默认2_000_000)，可修改这个范围控制最终码率。
+
 但是要注意如果VideoBitRateCalculator.MINIMUM_TARGET_VIDEO_BITRATE设置太大，会造成最终输出的文件超过upperSizeLimit，造成转换失败。
 
 ## 视频分辨率控制
