@@ -33,7 +33,7 @@ public class VideoConvertUtil {
      * @param videoPath      视频路径
      * @param attachPath     转换后路径
      * @param upperSizeLimit 最大尺寸限制
-     * @param useMemory      是否使用MemoryFile
+     * @param useMemory      是否使用MemoryFile，MemoryFile比Stream IO效率高
      * @param listener       回调
      * @return 唯一id
      */

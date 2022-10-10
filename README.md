@@ -1,7 +1,17 @@
 [![](https://jitpack.io/v/a365344743s/MediaCompressSignal.svg)](https://jitpack.io/#a365344743s/MediaCompressSignal)
 
 # MediaCompressSignal
- Android 视频、图片(暂未实现)、音频(暂未实现)压缩库 from [Signal](https://github.com/signalapp/Signal-Android)
+Android 视频、图片(暂未实现)、音频(暂未实现)压缩库 from [Signal](https://github.com/signalapp/Signal-Android)
+
+对比 [MediaCompressTelegram](https://github.com/a365344743s/MediaCompressTelegram)
+
+| 项目            | Telegram | Signal |
+|---------------|:--------:|:------:|
+| 最低Android版本支持 |    18    |   26   |
+| aar大小         |   6.8M   |  114K  |
+
+Telegram 6.8M的大小是包含4个abi架构的so大小，实际使用单个abi会减小4.6-5M
+Signal 114K的大小也包含4个abi架构的so大小，实际使用单个abi会减小6.8-11.4K
 
 # Signal Commit
 提交： 96539d70dffdff0386b80afa1c8022059405dee4 [96539d7]
