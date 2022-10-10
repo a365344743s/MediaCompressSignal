@@ -5,16 +5,17 @@ package org.thoughtcrime.securesms.video;
  */
 public final class VideoBitRateCalculator {
 
-  private static final int MAXIMUM_TARGET_VIDEO_BITRATE = VideoUtil.VIDEO_BIT_RATE;
+  private static final int MAXIMUM_TARGET_VIDEO_BITRATE = 2_000_000;
   private static final int LOW_RES_TARGET_VIDEO_BITRATE = 1_750_000;
   private static final int MINIMUM_TARGET_VIDEO_BITRATE = 500_000;
-  private static final int AUDIO_BITRATE                = VideoUtil.AUDIO_BIT_RATE;
-  private static final int OUTPUT_FORMAT                = VideoUtil.VIDEO_SHORT_WIDTH;
+  private static final int AUDIO_BITRATE                = 192_000;
+  private static final int OUTPUT_FORMAT                = 720;
   private static final int LOW_RES_OUTPUT_FORMAT        = 480;
 
   private final long upperFileSizeLimitWithMargin;
 
   public VideoBitRateCalculator(long upperFileSizeLimit) {
+    /* 猜测是因为视频码率不是固定的，可能比目标码率大最大10%，为了保证输出文件一定小于upperFileSizeLimit，这里先预留了10%的大小，所以这里最终的输出尺寸可能比upperFileSizeLimit小最多10%。*/
     upperFileSizeLimitWithMargin = (long) (upperFileSizeLimit / 1.1);
   }
 
@@ -32,6 +33,13 @@ public final class VideoBitRateCalculator {
     return new Quality(targetVideoBitRate, AUDIO_BITRATE, quality, duration);
   }
 
+  /**
+   * 计算目标视频码率
+   * 计算方法 (目标文件大小-音频占用大小) / 时长
+   * @param sizeGuideBytes 目标文件大小
+   * @param duration 时长
+   * @return 目标视频码率
+   */
   private int getTargetVideoBitRate(long sizeGuideBytes, long duration) {
     double durationSeconds = duration / 1000d;
 

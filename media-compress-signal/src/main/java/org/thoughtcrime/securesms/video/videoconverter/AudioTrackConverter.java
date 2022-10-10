@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.media.MediaInput;
-import org.thoughtcrime.securesms.video.VideoUtil;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -22,7 +21,7 @@ final class AudioTrackConverter {
     private static final String TAG = "media-converter";
     private static final boolean VERBOSE = false; // lots of logging
 
-    private static final String OUTPUT_AUDIO_MIME_TYPE = VideoUtil.AUDIO_MIME_TYPE; // Advanced Audio Coding
+    private static final String OUTPUT_AUDIO_MIME_TYPE = "audio/mp4a-latm"; // Advanced Audio Coding
     private static final int OUTPUT_AUDIO_AAC_PROFILE = MediaCodecInfo.CodecProfileLevel.AACObjectLC; //MediaCodecInfo.CodecProfileLevel.AACObjectHE;
 
     private static final int TIMEOUT_USEC = 10000;
